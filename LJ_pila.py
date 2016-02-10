@@ -15,7 +15,6 @@ d.configU3()
 
 
 f=1
-U=4
 T=[]
 bla=[]
 per=1/float(f)
@@ -40,7 +39,7 @@ while t.clock()<8:
         
     t1=t.clock()-per*n
         
-    u= abs(10*f*t1-U )
+    u= abs(10*f*t1-5)
         
         
     d.writeRegister(DAC0,u)

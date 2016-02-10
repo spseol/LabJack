@@ -15,7 +15,7 @@ d.configU3()
 
 
 f=1
-U=4
+
 T=[]
 bla=[]
 per=1/float(f)
@@ -34,29 +34,18 @@ while t.clock()<8:
     
     print t1
     
-    if t1>=per:
-        
-        n=n+1
+    if t1>=per:        
+        n=n+1  
         
     t1=t.clock()-per*n
-        
-    u= abs(10*f*t1-U )
-        
-        
+    u= abs(10*f*t1-5)
     d.writeRegister(DAC0,u)
-
-    
-        
     
     bla.append(d.readRegister(0))
-        
     T.append(t.clock())
     
-
-
 d.writeRegister(DAC0,0)
 pylab.plot(T,bla)
-
 pylab.title('hsdgh')
 pylab.grid(True)
 pylab.xlabel('t')

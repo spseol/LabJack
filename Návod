@@ -1,24 +1,58 @@
 Toto je stručný návod k používání základních příkazů pro JabJack U3-HV...
 
 I.  Naimportujeme knihovny
-import u3
-d=u3.U3()	
+>>>import u3
+>>>d=u3.U3()	
 
 Po případě nastavit všechny hodnoty na původní příkazem.
 
-d.config()
+>>>d.config()
 
 
 II. Základní příkazy
 Nejjednodužší spůzob je pomocí zapisovnání registrů. Vystačí nám dvě funkce.
-d.writeRegister(...)
-d.readRegister(...)
+>>>d.writeRegister(...)
+>>>d.readRegister(...)
 
 Registry jsou čísla přiřazená k příkazům, které LabJack provede.
 Př.:  Pro kontakt AIN0(Analog Input) je registr 0, chceme-li přečíst napětí tak
-d.readRegister(0)
+>>>d.readRegister(0)
+0
 Při použití read nám navrátí buď hodnotu kterou změří, nebo hodnotu která je na daném registru nastavena. U read zadáváme pouze číslo registru.
 
 U funkce write píšeme první číslo registru a za něj hodnotu.
-d.writeRegister(5000,5)
+>>>>d.writeRegister(5000,5)
+5
 Nastáví DAC0 na 5V.
+
+Seznam všech regustrů najdeme na https://labjack.com/support/software/api/modbus/ud-modbus
+
+Registry jako 000#(AIN) a 500#(DAC) mají v tabulkách na uvedeném odkazu najdeme parametr Min Regs ktery udává počet obsazených registrů jedním zápisem/přečtením do/z přístroje.
+Jednoduše řečeno, chceme-li ovládat libovolný AIN tak AIN0 - 0,AIN1 - 2, AIN2 - 4,AIN3 - 6.
+
+U DAC to bude DAC0 - 5000, DAC1 - 5002. 
+5000	DAC Values	2 ← Min. Regs. 
+
+FIO4 - 6004
+FIO# - 600# 
+6000	DIO State	1
+
+Na FIO lze nastavít i směr pod registrem 6100. Původně je nastavé na 0, 6000 na 1. Když 6100...0 tak ledku rozstvítíme tak, že anodu dáme na GND a katodu do námi zvoleného FIO(FIO4 nepouívejte, Je asi nastavený na jiné ůčely) a dáme příkaz:
+>>>d.writeRegister(6006,0)
+
+Chceme-li katodu na GND tak změníme směr:
+>>>d.writeRegister(6106,1)
+A nastavíme logickou 1.
+>>>d.writeRegister(6006,1)
+
+Přes FIO můžeme také číst, ale pouze když ho připojíme na zem... (jinak se mi to nepovedlo)
+>>>d.writeRegister(6106,0)
+>>>d.readRegister(6006)
+1
+
+Když jej připojíme na GND:
+>>>d.readRegister(6006)
+0
+
+
+Další návody najdete v angličtině na oficiálních stránkách.

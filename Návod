@@ -17,11 +17,11 @@ Nejjednodužší spůzob je pomocí zapisovnání registrů. Vystačí nám dvě
 Registry jsou čísla přiřazená k příkazům, které LabJack provede.
 Př.:  Pro kontakt AIN0(Analog Input) je registr 0, chceme-li přečíst napětí tak
 >>>d.readRegister(0)
-0
+1.698754....
 Při použití read nám navrátí buď hodnotu kterou změří, nebo hodnotu která je na daném registru nastavena. U read zadáváme pouze číslo registru.
 
 U funkce write píšeme první číslo registru a za něj hodnotu.
->>>>d.writeRegister(5000,5)
+>>>d.writeRegister(5000,5)
 5
 Nastáví DAC0 na 5V.
 
@@ -55,4 +55,4 @@ Když jej připojíme na GND:
 0
 
 
-Další návody najdete v angličtině na oficiálních stránkách.
+Další návody najdete v angličtině na oficiálních stránkách LabJacku.

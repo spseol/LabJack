@@ -37,7 +37,7 @@ FIO4 - 6004
 FIO# - 600# 
 6000	DIO State	1
 
-Na FIO lze nastavít i směr pod registrem 6100. Původně je nastavé na 0, 6000 na 1. Když 6100...0 tak ledku rozstvítíme tak, že anodu dáme na GND a katodu do námi zvoleného FIO(FIO4 nepouívejte, Je asi nastavený na jiné ůčely) a dáme příkaz:
+Na FIO lze nastavít i směr pod registrem 6100. Původně je nastavé na 0, 6000 na 1. Když je registr 6100 nastaven na hodnotu 0, tak ledku rozstvítíme tak, že anodu dáme na +5V a katodu do námi zvoleného FIO (FIO4 nepoužívejte. Je asi nastavený na jiné ůčely) a dáme příkaz:
 >>>d.writeRegister(6006,0)
 
 Chceme-li katodu na GND tak změníme směr:
@@ -53,6 +53,5 @@ Přes FIO můžeme také číst, ale pouze když ho připojíme na zem... (jinak
 Když jej připojíme na GND:
 >>>d.readRegister(6006)
 0
-
 
 Další návody najdete v angličtině na oficiálních stránkách LabJacku.

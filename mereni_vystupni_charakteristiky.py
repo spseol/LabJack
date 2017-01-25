@@ -30,16 +30,16 @@ def proud(q,w=0):
 
 
     if q == 0 or q=="b":
-        e=d.readRegister(0)
-        x=d.readRegister(5000)*0.3148089674771077
-        r=100
+        e=float(d.readRegister(0))
+        x=float(d.readRegister(5000))/2
+        r=151.7
         u=x - e
         I=float(u)/float(r)
 
     elif q == 1 or q=="c":
         e = d.readRegister(2)
-        x=2*d.readRegister(5002)
-        r=51.1
+        x=1.998991935483871*d.readRegister(5002)
+        r=199.4
         u = x - e
         I = float(u) / float(r)
     if w==0:
@@ -107,7 +107,7 @@ d.writeRegister(5000,0)
 d.writeRegister(5002,0)
 U=[]
 I=[]
-v= [0.001]
+v= [0.0005,0.0003,0.0001]
 print "start"
 for i in v:
     d.writeRegister(5000, 0)
@@ -127,5 +127,5 @@ d.writeRegister(5002,0)
 for i in range(len(v)):
     p.plot(U[i],I[i])
 
-print U[0],I[0]
-p.show()
+    print U[i],I[i]
+    p.show()
